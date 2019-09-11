@@ -1,0 +1,37 @@
+Given a 2D matrix of size n*n containing 0 and 1. 0 denotes air ,1 denotes land. Mario is currently stands at (n,1)(row no. n, column no. 1). There is coin at (x,y).
+ Mario can climb to upper rows or move back to lower rows using ladder.
+ Mario can also move horizontaly if adjacent cell contains 1.
+ Mario needs to choose minimum length ladder to reach the coin.
+ find that minimum length of ladder.
+NOTE: last row of matrix always contains 1
+(x,y) always contains 1
+use 1-based indexing
+
+Input Format
+
+1st line contains n(size of matrix)
+next n rows each containing n column( denotes air or land)
+last row contains (x,y)(coordinate of coin)
+
+Constraints
+
+1<=n<=50
+1<=x<=50
+1<=y<=50
+
+Output Format
+
+print minimum length ladder
+
+Sample Input 0
+
+5
+1 0 1 0 1
+0 0 0 0 1
+0 0 0 0 0
+0 0 0 0 0
+1 1 1 1 1
+1 5
+Sample Output 0
+
+3

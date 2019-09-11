@@ -1,0 +1,11 @@
+first read this qus (find all permutation of a given string )
+https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
+
+#let the number of points be n 
+#find all permutation of 1 to n (123..n, 132..n,1432..n etc)
+permutation (15423 means first we visit src to point number 1 then 5 then 4.. at last destination)
+
+# so once we get one of the permutaions we calculate total distance that will
+be covered if this order will be follow
+for ex if permutaion if 15423 
+distance is-> dist(src,1)+dist(1,5)+dist(5,4)+dist(4,2)+dist(2,3)+dist(3,dest).

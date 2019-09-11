@@ -1,0 +1,13 @@
+here n is 50
+so even O(n^4 ) will paas
+
+logic:
+as n is 50 ,max legth of ladder choose will also be 49
+so first we try to reach that point(that contain gold) with ladder of 0
+length then with 1 length ans similarly upto n-1 (once we reach that point break the loop)
+
+so now we have a variable length tht denotes max vertical climb we can
+
+apply dfs from starting point
+we can move horizontally freely if there is land
+for vertical climbing with the ladder of length x we can climb(i+1,i+2..i+x,i-1,i-2,...i-x)

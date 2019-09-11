@@ -1,0 +1,14 @@
+*** Recursion ( how to make base condition, recursion formula , recursion states(no of parameter passed(min)))
+  (every recursion makes a tree)
+-- fibonacci series
+-- https://www.geeksforgeeks.org/print-all-possible-paths-from-top-left-to-bottom-right-of-a-mxn-matrix/
+-- https://www.geeksforgeeks.org/combinational-sum/
+-- https://www.geeksforgeeks.org/the-knights-tour-problem-backtracking-1/
+
+-- https://www.geeksforgeeks.org/dynamic-programming/    (basic)
+
+1. Floyd Warshall Algo.
+2. DFS (most imp)
+3. BFS (most imp)
+4. String permutation
+5. https://puzzlefry.com/top-25-tech-interview-puzzles-with-answers/

@@ -1,0 +1,13 @@
+# maximum no. of holes are 5 so total number of points are 10(both ends of hole)
++ 2 more points(1 starting point 1 destination point)
+# total number of points 2*n+2
+
+#algo use: floyd warshall (very easy)( https://www.geeksforgeeks.org/dynamic-programming-set-16-floyd-warshall-algorithm/  )
+try dry run of any small example  or https://www.youtube.com/watch?v=LwJdNfdLF9s
+
+# point number 1 denote staring point and 2*n+2 denote destination point 
+rest 2*n points are for both ends of tunnel
+
+#now simple apply floyd warshall logic(same ditto code )
+
+

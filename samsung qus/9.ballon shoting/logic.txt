@@ -1,0 +1,5 @@
+study how to find all permutation of string from geeksforgeeks
+2. suppose there are n ballons
+find all permutaion of 123..n
+let any permutaion be 3421..n so we first shoot ballon no. 3 then 4 in this 
+way we calculat the score attain by all permutaion and finally return maximum

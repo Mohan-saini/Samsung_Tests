@@ -1,0 +1,10 @@
+for each rare element apply bfs.so that we can have shortest distance
+of each point (i,j)from that rare element
+
+# suppose dp[1][i][j]-> shortest distance of point (i,j) from 
+1st rare element
+
+dp[2][i][j]->shortest distance of point (i,j) from 
+2nd rare element
+
+finally find the minimum values from (maximum value of dp[1][i][j],dp[2][i][j]..)
