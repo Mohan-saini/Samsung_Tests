@@ -1,0 +1,53 @@
+import java.util.Scanner ;
+ 
+public class BannerOnThePillars
+{
+    public static void main(String args[])
+    {
+        int[] A = {1,2,3,5,5};
+        System.out.println(getAns(A)) ;
+    }
+    static int getAns(int[] A)
+    {
+        int n = A.length ;
+        int[] sum = new int[(1<<n)] ;
+        int[][] mat = new int[(1<<n)][n] ;
+        int[][] l1 = new int[(1<<n)][n] ;
+        int[][] l2 = new int[(1<<n)][n] ;
+        //System.out.println(sum.length) ;
+        for(int i=0;i<sum.length;i++)
+        {
+            int val = i,count = 0 ;
+            while(val!=0)
+            {
+                if((val&1)==1)
+                {
+                    sum[i]+=A[count] ;
+                    mat[i][count]=1 ;
+                }
+                count++ ;
+                val/=2 ;
+            }
+        }
+        int max = Integer.MIN_VALUE ;
+        for(int i=0;i<sum.length;i++)
+        {
+            loop2:for(int j=i+1;j<sum.length;j++)
+            {
+                if(sum[i]==sum[j])
+                {
+                    for(int k=0;k<n;k++)
+                    {
+                        if(mat[i][k]==1 && mat[j][k]==1)
+                        {
+                            continue loop2 ;
+                        } 
+                       
+                    }
+                    max = max<sum[i]?sum[i]:max ;
+                }
+            }
+        }
+        return max ;
+    }
+}
