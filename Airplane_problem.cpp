@@ -36,85 +36,75 @@ You’ll be given a grid as below:
 */
 #include <iostream>
 using namespace std;
-int det[5][5];
-int mat[13][5];
-
-void detonate(int r)
-{
-    for(int i=r;i>r-5 && i>=0;i--)
-    {
-        for(int j=0;j<5;j++)
-        {
-            det[r-i][j]=0;
-            if(mat[i][j]==2)
-            {
-                det[r-i][j]=2;
-                mat[i][j]=0;
+#define lim 100
+int grid[lim][5];
+int num_rows;
+int maxCoins=0;
+bool bombUsed=false;
+void go_to(int i, int j, int coins){
+    if(j<0 || j>=5){
+        //Went out of board
+        return;
+    }
+    if(i==num_rows){
+        //Reached the end of grid
+        if(coins>maxCoins)
+            maxCoins=coins;
+        return;
+    }
+    int flag=0, ctr=0;
+    int enemy_coord[25][2];
+    if(grid[i][j]==2){
+        if(bombUsed==true){
+            //Game over here
+            if(coins>maxCoins)
+                maxCoins=coins;
+            return;
+        }else{
+            //Use the bomb now
+            bombUsed=true;
+            flag=1;
+            for(int x=i; x<min(i+5,num_rows); x++){
+                for(int y=0; y<5; y++){
+                    if(grid[x][y]==2){
+                        enemy_coord[ctr][0]=x;
+                        enemy_coord[ctr++][1]=y;
+                        grid[x][y]=0;
+                    }
+                }
             }
         }
-    }
-}
+    }else if(grid[i][j]==1)
+        coins=coins+1;
 
-void undet(int r)
-{
-    for(int i=r;i>r-5 && i>=0;i--)
-        for(int j=0;j<5;j++)
-        {
-            if( det[r-i][j]==2)
-                mat[i][j]=2;
+    go_to(i+1, j+1, coins);
+    go_to(i+1, j, coins);
+    go_to(i+1, j-1, coins);
+
+    if(flag==1){
+        for(int k=0; k<ctr; k++){
+            int x=enemy_coord[k][0];
+            int y=enemy_coord[k][1];
+            grid[x][y]=2;
         }
+    }
+    return;
 }
-void func(int n,int pos,int c,int &max)
-{
-    if(pos>4||pos<0||c<0)
-        return;
-
-    if(mat[n][pos]==2)
-        c-=1;
-    else if(mat[n][pos]==1)
-        c+=1;
-
-    if(n==0)
-    {
-        if(c>max)
-            max=c;
-        return;
+int main(){
+    cin>>num_rows;
+    for(int i=0; i<num_rows; i++){
+        int a,b,c,d,e;
+        cin>>a>>b>>c>>d>>e;
+        grid[num_rows-1-i][0]=a;
+        grid[num_rows-1-i][1]=b;
+        grid[num_rows-1-i][2]=c;
+        grid[num_rows-1-i][3]=d;
+        grid[num_rows-1-i][4]=e;
     }
-    else
-    {
-        func(n-1,pos+1,c,max);
-        func(n-1,pos-1,c,max);
-        func(n-1,pos,c,max);
-    }
-}
-int main()
-{
-    int t;
-    cin>>t;
-    int count=1;
-    while(t--)
-    {
-        int n;
-        cin>>n;
-        for(int i=0;i<n;i++)
-            for(int j=0;j<5;j++)
-                cin>>mat[i][j];
-        int max=-1,c;
-        for(int j=0;j<5;j++)
-            mat[n][j]=0;
-        mat[n][2]=3;
-        for(int j=n;j>=5;j--)
-        {
-            c=-1;
-            detonate(j-1);
-            func(n,2,0,c);
-            if(c>max)
-                max=c;
-            undet(j-1);
-        }
-        if(max<0)
-            max=-1;
-        cout<<"#"<<count<<" "<<max<<endl;
-        count++;
-    }
+    maxCoins=0;
+    go_to(0,1,0);
+    go_to(0,2,0);
+    go_to(0,3,0);
+    cout<<"Max_Coins : "<<maxCoins<<endl;
+    return 1;
 }
