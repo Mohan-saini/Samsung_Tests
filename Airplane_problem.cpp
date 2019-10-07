@@ -40,8 +40,8 @@ using namespace std;
 int grid[lim][5];
 int num_rows;
 int maxCoins=0;
-bool bombUsed=false;
-void go_to(int i, int j, int coins){
+//bool bombUsed=false;
+void go_to(int i, int j, int coins,bool bombUsed){
     if(j<0 || j>=5){
         //Went out of board
         return;
@@ -77,9 +77,9 @@ void go_to(int i, int j, int coins){
     }else if(grid[i][j]==1)
         coins=coins+1;
 
-    go_to(i+1, j+1, coins);
-    go_to(i+1, j, coins);
-    go_to(i+1, j-1, coins);
+    go_to(i+1, j+1, coins,bombUsed);
+    go_to(i+1, j, coins,bombUsed);
+    go_to(i+1, j-1, coins,bombUsed);
 
     if(flag==1){
         for(int k=0; k<ctr; k++){
@@ -102,9 +102,9 @@ int main(){
         grid[num_rows-1-i][4]=e;
     }
     maxCoins=0;
-    go_to(0,1,0);
-    go_to(0,2,0);
-    go_to(0,3,0);
+    go_to(0,1,0,false);
+    go_to(0,2,0,false);
+    go_to(0,3,0,false);
     cout<<"Max_Coins : "<<maxCoins<<endl;
     return 1;
 }
