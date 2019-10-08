@@ -36,11 +36,19 @@ int main()
             graph[a].push_back(b);
         }
         int color[nodes+1];
-        for(int i=0;i<=nodes;i++)color[i]=-1;
+        for(int i=1;i<=nodes;i++)color[i]=-1;
         bool flag;
         for(int i=1;i<=nodes;i++){
             if(!visited[i]){
-                color[i]=0;
+                int c=0;
+                for(int j=0;j<graph[i].size();j++){
+                    int adj=graph[i][j];
+                    if(color[adj]==c){
+                        c=1;
+                        break;
+                    }
+                }
+                color[i]=c;
                 flag=dfs(i,color);
                 if(!flag)break;
             }
@@ -55,3 +63,4 @@ int main()
         }
     }
 }
+
